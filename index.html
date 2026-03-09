@@ -12,8 +12,8 @@
 :root{
   --accent:#b8963e; --accent-h:#caa84a;
   --bg:#161412; --bg-dark:#0f0e0c; --bg-mid:#1c1916; --bg-card:#181512;
-  --text:#f5f0e6; --subtle:rgba(245,240,230,.76); --dim:rgba(245,240,230,.38);
-  --line:rgba(255,255,255,.1); --line-h:rgba(255,255,255,.22);
+  --text:#f5f0e6; --subtle:rgba(245,240,230,.80); --dim:rgba(245,240,230,.40);
+  --line:rgba(255,255,255,.10); --line-h:rgba(255,255,255,.22);
   --serif:'Cormorant Garamond',Georgia,serif;
   --sans:'Montserrat',sans-serif;
   --ease:cubic-bezier(0.16,1,0.3,1);
@@ -29,8 +29,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit;color:inhe
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg-dark)}
 ::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
 .wrap{max-width:var(--max-w);margin:0 auto;padding:0 var(--pad)}
-.sec-label{font-size:10px;font-weight:700;letter-spacing:.38em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:block}
-.sec-title{font-family:var(--serif);font-weight:300;font-size:clamp(32px,4vw,56px);line-height:1.06;text-rendering:geometricPrecision}
+.sec-label{font-size:10px;font-weight:700;letter-spacing:.42em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:block}
+.sec-title{font-family:var(--serif);font-weight:300;font-size:clamp(34px,4.2vw,60px);line-height:1.05;text-rendering:geometricPrecision}
 .sec-title em{font-style:italic}
 .rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .rv.on{opacity:1;transform:translateY(0)}
@@ -40,7 +40,31 @@ button{cursor:pointer;border:none;background:none;font-family:inherit;color:inhe
 .btn-outline{display:inline-block;padding:13px 32px;border:1px solid rgba(255,255,255,.24);color:var(--text);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;transition:all .22s}
 .btn-outline:hover{border-color:var(--text);background:rgba(255,255,255,.05)}
 
-/* NAV */
+/* ── STICKY PHONE BAR ───────────────────────── */
+#sticky-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:850;
+  background:var(--bg-dark);
+  border-top:1px solid var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  gap:28px;padding:12px var(--pad);
+  transform:translateY(100%);
+  transition:transform .5s var(--ease);
+}
+#sticky-bar.visible{transform:translateY(0)}
+.sticky-label{font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--subtle)}
+.sticky-phone{display:flex;align-items:center;gap:20px}
+.sticky-phone a{
+  font-family:var(--serif);font-size:20px;font-weight:400;color:var(--text);
+  letter-spacing:.04em;transition:color .2s;
+}
+.sticky-phone a:hover{color:var(--accent)}
+.sticky-pipe{width:1px;height:22px;background:var(--line)}
+.sticky-cta{padding:9px 22px;background:var(--accent);color:#000;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;transition:background .2s;white-space:nowrap;margin-left:8px}
+.sticky-cta:hover{background:var(--accent-h)}
+.sticky-close{margin-left:auto;color:var(--dim);font-size:14px;cursor:pointer;padding:4px 8px;transition:color .2s;line-height:1}
+.sticky-close:hover{color:var(--text)}
+
+/* ── NAV ────────────────────────────────────── */
 #nav{position:fixed;top:0;left:0;right:0;z-index:900;height:var(--nav-h);display:flex;align-items:center;padding:0 var(--pad);transition:background .4s,box-shadow .4s}
 #nav.scrolled{background:rgba(10,9,8,.97);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);box-shadow:0 1px 0 var(--line)}
 .logo{display:inline-flex;align-items:baseline;font-family:var(--serif);font-weight:400;font-size:32px;letter-spacing:.06em;color:var(--text);position:relative;padding-bottom:5px;text-rendering:geometricPrecision}
@@ -50,35 +74,38 @@ button{cursor:pointer;border:none;background:none;font-family:inherit;color:inhe
 .nav-links a{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--subtle);transition:color .22s;position:relative}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .28s var(--ease)}
 .nav-links a:hover{color:var(--text)}.nav-links a:hover::after{transform:scaleX(1)}
-.nav-cta{margin-left:40px;padding:11px 28px;background:transparent;border:1px solid var(--accent);color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;transition:all .22s;white-space:nowrap}
+.nav-phone{margin-left:32px;font-family:var(--serif);font-size:17px;color:var(--subtle);letter-spacing:.04em;transition:color .22s}
+.nav-phone:hover{color:var(--accent)}
+.nav-cta{margin-left:20px;padding:11px 28px;background:transparent;border:1px solid var(--accent);color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;transition:all .22s;white-space:nowrap}
 .nav-cta:hover{background:var(--accent);color:#000}
 
-/* HERO */
+/* ── HERO ───────────────────────────────────── */
 #hero{position:relative;height:100vh;min-height:700px;display:grid;grid-template-columns:1fr var(--panel-w);overflow:hidden}
 .hero-photo{position:relative;overflow:hidden}
 .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center center;transform:scale(1.07);animation:hZoom 20s ease-out forwards;filter:contrast(1.05) saturate(1.06)}
 @keyframes hZoom{to{transform:scale(1.0)}}
 .hero-photo-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.02) 40%,rgba(0,0,0,.45))}
 .hero-panel{background:var(--bg-dark);display:flex;flex-direction:column;justify-content:center;padding:0 52px;border-left:1px solid var(--line)}
-.hero-eyebrow{font-size:10px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);margin-bottom:22px;white-space:nowrap;opacity:0;transform:translateY(14px);animation:fUp .8s .4s var(--ease) forwards}
-.hero-h1{font-family:var(--serif);font-weight:300;font-size:clamp(36px,3.4vw,52px);line-height:1.05;text-rendering:geometricPrecision;opacity:0;transform:translateY(18px);animation:fUp .9s .65s var(--ease) forwards}
+.hero-eyebrow{font-size:10px;font-weight:700;letter-spacing:.42em;text-transform:uppercase;color:var(--accent);margin-bottom:22px;opacity:0;transform:translateY(14px);animation:fUp .8s .4s var(--ease) forwards}
+.hero-h1{font-family:var(--serif);font-weight:300;font-size:clamp(40px,3.6vw,58px);line-height:1.04;text-rendering:geometricPrecision;opacity:0;transform:translateY(18px);animation:fUp .9s .65s var(--ease) forwards}
 .hero-h1 em{font-style:italic}
-.hero-sub{font-size:14px;color:var(--subtle);line-height:1.9;margin-top:22px;opacity:0;transform:translateY(14px);animation:fUp .9s .85s var(--ease) forwards}
-.hero-search{display:flex;margin-top:30px;opacity:0;transform:translateY(14px);animation:fUp .9s 1.0s var(--ease) forwards}
+.hero-sub{font-size:14px;color:var(--subtle);line-height:1.9;margin-top:20px;opacity:0;transform:translateY(14px);animation:fUp .9s .85s var(--ease) forwards}
+.hero-search{display:flex;margin-top:28px;opacity:0;transform:translateY(14px);animation:fUp .9s 1.0s var(--ease) forwards}
 .hero-search input{flex:1;background:rgba(255,255,255,.052);border:1px solid var(--line);border-right:none;color:var(--text);font-family:var(--sans);font-size:13px;font-weight:300;padding:13px 18px;outline:none;transition:border-color .22s,background .22s}
 .hero-search input::placeholder{color:var(--subtle)}
 .hero-search input:focus{border-color:rgba(184,150,62,.5);background:rgba(255,255,255,.075)}
 .btn-search{background:var(--accent);color:#000;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;padding:13px 22px;transition:background .2s;white-space:nowrap}
 .btn-search:hover{background:var(--accent-h)}
-.hero-actions{display:flex;flex-direction:column;gap:10px;margin-top:14px;opacity:0;transform:translateY(14px);animation:fUp .9s 1.1s var(--ease) forwards}
-.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:36px;background:var(--line);opacity:0;transform:translateY(14px);animation:fUp .9s 1.28s var(--ease) forwards}
+.hero-actions{display:flex;flex-direction:column;gap:10px;margin-top:12px;opacity:0;transform:translateY(14px);animation:fUp .9s 1.1s var(--ease) forwards}
+.hero-actions .btn-primary{text-align:center}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:32px;background:var(--line);opacity:0;transform:translateY(14px);animation:fUp .9s 1.28s var(--ease) forwards}
 .hstat{background:var(--bg-dark);padding:20px 22px}
 .hstat-n{font-family:var(--serif);font-size:36px;font-weight:300;line-height:1;color:var(--accent);text-rendering:geometricPrecision}
 .hstat-n sup{font-size:15px;color:var(--text);vertical-align:super}
 .hstat-l{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--subtle);margin-top:6px}
 @keyframes fUp{to{opacity:1;transform:translateY(0)}}
 
-/* TICKER */
+/* ── TICKER ─────────────────────────────────── */
 #ticker{background:var(--bg-dark);border-top:1px solid var(--accent);border-bottom:1px solid rgba(184,150,62,.18);overflow:hidden;padding:14px 0}
 .tick-track{display:flex;white-space:nowrap;animation:tickScroll 54s linear infinite}
 .tick-track:hover{animation-play-state:paused}
@@ -86,7 +113,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit;color:inhe
 .tick-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;flex-shrink:0}
 @keyframes tickScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* FEATURED */
+/* ── FEATURED ───────────────────────────────── */
 #featured{padding:0}
 .feat-wrap{display:grid;grid-template-columns:var(--panel-w) 1fr;min-height:88vh}
 .feat-panel{background:var(--bg-dark);display:flex;flex-direction:column;justify-content:center;padding:64px 56px;border-right:1px solid var(--line);order:1}
@@ -98,10 +125,10 @@ button{cursor:pointer;border:none;background:none;font-family:inherit;color:inhe
 .feat-thumbs{position:absolute;bottom:0;left:0;right:0;display:flex;gap:2px;height:96px;background:rgba(0,0,0,.74);padding:2px}
 .feat-thumb{flex:1;overflow:hidden;cursor:pointer;position:relative}
 .feat-thumb img{width:100%;height:100%;object-fit:cover;filter:brightness(.58) contrast(1.05);transition:filter .28s}
-.feat-thumb:hover img{filter:brightness(1) contrast(1.02)}
+.feat-thumb:hover img{filter:brightness(1)}
 .feat-thumb-more{position:absolute;inset:0;background:rgba(0,0,0,.66);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#fff}
-.feat-eyebrow{font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
-.feat-title{font-family:var(--serif);font-weight:300;font-size:clamp(26px,2.6vw,40px);line-height:1.08;text-rendering:geometricPrecision}
+.feat-eyebrow{font-size:10px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.feat-title{font-family:var(--serif);font-weight:300;font-size:clamp(26px,2.8vw,42px);line-height:1.07;text-rendering:geometricPrecision}
 .feat-title em{font-style:italic}
 .feat-addr{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--subtle);margin:12px 0 20px}
 .feat-desc{font-size:13.5px;color:var(--subtle);line-height:1.88;padding:16px 18px;background:rgba(255,255,255,.034);border-left:2px solid var(--accent);margin-bottom:22px}
@@ -111,7 +138,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit;color:inhe
 .fspec p{font-family:var(--serif);font-size:20px;font-weight:400;line-height:1;text-rendering:geometricPrecision}
 .fspec p small{font-family:var(--sans);font-size:11px;font-weight:300;color:var(--subtle)}
 .feat-method-label{font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--subtle);margin-bottom:5px}
-.feat-method{font-family:var(--serif);font-size:26px;font-weight:300;margin-bottom:8px;text-rendering:geometricPrecision}
+.feat-method{font-family:var(--serif);font-size:26px;font-weight:300;margin-bottom:8px}
 .feat-deadline{font-size:13.5px;color:var(--subtle);line-height:1.7;margin-bottom:24px}
 .feat-deadline strong{color:var(--text)}
 .feat-agents{display:flex;gap:16px;padding-top:22px;border-top:1px solid var(--line);flex-wrap:wrap}
@@ -120,7 +147,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit;color:inhe
 .agent-btn{padding:6px 13px;border:1px solid var(--line);font-size:10px;font-weight:500;letter-spacing:.1em;color:var(--subtle);transition:all .2s}
 .agent-btn:hover{border-color:var(--accent);color:var(--accent)}
 
-/* PROPERTIES */
+/* ── PROPERTIES ─────────────────────────────── */
 #properties{padding:120px 0}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px}
 .view-all{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--subtle);border-bottom:1px solid var(--accent);padding-bottom:2px;transition:color .2s;white-space:nowrap}
@@ -134,7 +161,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit;color:inhe
 .prop-img{width:100%;height:430px;object-fit:cover;filter:brightness(.78) contrast(1.04) saturate(1.03);transition:transform .75s var(--ease),filter .4s;display:block}
 .prop-card:first-child .prop-img{height:540px}
 .prop-card:hover .prop-img{transform:scale(1.05);filter:brightness(.96) contrast(1.03)}
-.prop-overlay{position:absolute;inset:0;background:linear-gradient(transparent 32%,rgba(0,0,0,.84))}
+.prop-overlay{position:absolute;inset:0;background:linear-gradient(transparent 32%,rgba(0,0,0,.86))}
 .prop-info{position:absolute;bottom:0;left:0;right:0;padding:28px 32px}
 .prop-tag{display:inline-block;padding:4px 12px;background:var(--accent);color:#000;font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;margin-bottom:10px}
 .prop-suburb{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.56);margin-bottom:5px}
@@ -144,7 +171,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit;color:inhe
 .prop-stat strong{display:block;font-family:var(--serif);font-size:17px;font-weight:400;color:var(--text);letter-spacing:0;text-rendering:geometricPrecision}
 .prop-view-all{text-align:center;margin-top:44px}
 
-/* SPECIALISTS */
+/* ── SPECIALISTS ────────────────────────────── */
 #specialists{padding:120px 0;background:var(--bg-mid)}
 .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:56px}
 .spec-card{display:grid;grid-template-columns:230px 1fr;background:var(--bg-dark);overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s}
@@ -165,8 +192,29 @@ button{cursor:pointer;border:none;background:none;font-family:inherit;color:inhe
 .spec-btn.primary{background:var(--accent);border-color:var(--accent);color:#000}
 .spec-btn.primary:hover{background:var(--accent-h)}
 
-/* ABOUT — single clean image of Michael, no overlap */
-#about{padding:120px 0;background:var(--bg-dark);position:relative;overflow:hidden}
+/* ── TESTIMONIALS ───────────────────────────── */
+#testimonials{padding:120px 0;background:var(--bg-dark);position:relative;overflow:hidden}
+#testimonials::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--accent),transparent)}
+#testimonials::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--accent),transparent)}
+.test-intro{text-align:center;max-width:560px;margin:0 auto 64px}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.test-card{background:var(--bg-mid);padding:44px 40px;position:relative;transition:transform .35s var(--ease),background .3s}
+.test-card:hover{transform:translateY(-4px);background:var(--bg-card)}
+.test-card::before{content:'\201C';position:absolute;top:24px;left:36px;font-family:var(--serif);font-size:80px;line-height:1;color:rgba(184,150,62,.18);pointer-events:none}
+.test-stars{display:flex;gap:4px;margin-bottom:20px}
+.test-star{color:var(--accent);font-size:13px}
+.test-body{font-family:var(--serif);font-size:18px;font-weight:300;line-height:1.6;color:var(--text);margin-bottom:28px;text-rendering:geometricPrecision}
+.test-body em{font-style:italic;color:var(--accent)}
+.test-author{display:flex;align-items:center;gap:14px;padding-top:22px;border-top:1px solid var(--line)}
+.test-avatar{width:44px;height:44px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:18px;font-weight:400;color:#000;flex-shrink:0}
+.test-name{font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--text)}
+.test-sub{font-size:11px;color:var(--subtle);margin-top:2px;letter-spacing:.04em}
+.test-nav{display:flex;justify-content:center;gap:8px;margin-top:48px}
+.test-dot{width:6px;height:6px;border-radius:50%;background:var(--line);transition:background .2s,transform .2s;cursor:pointer}
+.test-dot.active{background:var(--accent);transform:scale(1.4)}
+
+/* ── ABOUT ──────────────────────────────────── */
+#about{padding:120px 0;background:var(--bg-mid);position:relative;overflow:hidden}
 #about::before{content:'BOULGARIS';position:absolute;right:-60px;top:50%;transform:translateY(-50%);font-family:var(--sans);font-weight:700;font-size:180px;letter-spacing:.3em;color:rgba(255,255,255,.013);pointer-events:none;user-select:none}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .about-img-main{width:100%;height:580px;object-fit:cover;object-position:top center;display:block;filter:contrast(1.04) saturate(1.02)}
@@ -174,20 +222,20 @@ button{cursor:pointer;border:none;background:none;font-family:inherit;color:inhe
 .about-quote em{font-style:italic;color:var(--accent)}
 .about-body{font-size:15px;color:var(--subtle);line-height:1.92;margin-top:20px}
 .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:36px;background:var(--line)}
-.about-stat{background:var(--bg-dark);padding:24px 28px}
+.about-stat{background:var(--bg-mid);padding:24px 28px}
 .astat-n{font-family:var(--serif);font-size:44px;font-weight:300;line-height:1;color:var(--accent);text-rendering:geometricPrecision}
 .astat-n sup{font-size:18px;color:var(--text)}
 .astat-l{font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--subtle);margin-top:7px}
 
-/* QUOTE */
+/* ── QUOTE BREAK ────────────────────────────── */
 #quote-break{height:56vh;min-height:380px;position:relative;overflow:hidden}
 .qb-bg{position:absolute;inset:0;background-image:url('images/quote-bg.jpg');background-size:cover;background-position:center 40%;background-attachment:fixed;filter:contrast(1.05) saturate(1.04)}
-.qb-overlay{position:absolute;inset:0;background:rgba(0,0,0,.56);display:flex;align-items:center;justify-content:center}
+.qb-overlay{position:absolute;inset:0;background:rgba(0,0,0,.60);display:flex;align-items:center;justify-content:center}
 .qb-text{font-family:var(--serif);font-weight:300;font-size:clamp(24px,3.8vw,50px);line-height:1.22;text-align:center;max-width:820px;padding:0 48px;text-rendering:geometricPrecision}
 .qb-text em{font-style:italic;color:rgba(184,150,62,.86)}
 
-/* CONTACT */
-#contact{padding:120px 0;background:var(--bg-mid)}
+/* ── CONTACT ────────────────────────────────── */
+#contact{padding:120px 0;background:var(--bg-dark)}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:stretch;max-width:1160px;margin:0 auto}
 .contact-form{display:flex;flex-direction:column;gap:14px;margin-top:36px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -204,8 +252,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit;color:inhe
 .contact-value{font-size:15px;color:var(--text);transition:color .2s}
 a.contact-value:hover{color:var(--accent)}
 
-/* FOOTER — 24px, no ®, gold line flush directly under name */
-#footer{background:var(--bg-dark);padding:72px 0 36px;border-top:1px solid var(--line)}
+/* ── FOOTER ─────────────────────────────────── */
+#footer{background:var(--bg-dark);padding:72px 0 100px;border-top:1px solid var(--line)}
 .footer-grid{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:56px;padding-bottom:48px;border-bottom:1px solid var(--line)}
 .footer-logo{font-family:var(--serif);font-weight:400;font-size:24px;letter-spacing:.06em;display:inline-flex;align-items:baseline;line-height:1;position:relative;padding-bottom:5px;text-rendering:geometricPrecision}
 .footer-logo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--accent)}
@@ -222,13 +270,15 @@ a.contact-value:hover{color:var(--accent)}
 .footer-bottom-links{display:flex;gap:20px}
 .footer-bottom a{transition:color .2s}.footer-bottom a:hover{color:var(--subtle)}
 
-/* CHAT */
-#chat-btn{position:fixed;bottom:32px;right:32px;z-index:800;width:58px;height:58px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 28px rgba(0,0,0,.55);transition:transform .3s var(--ease),box-shadow .3s;cursor:pointer}
+/* ── CHAT ───────────────────────────────────── */
+#chat-btn{position:fixed;bottom:72px;right:32px;z-index:800;width:58px;height:58px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 28px rgba(0,0,0,.55);transition:transform .3s var(--ease),box-shadow .3s,bottom .5s var(--ease);cursor:pointer}
+#chat-btn.bar-open{bottom:92px}
 #chat-btn:hover{transform:scale(1.08);box-shadow:0 14px 36px rgba(184,150,62,.4)}
 #chat-btn svg{width:24px;height:24px;fill:#000}
 .chat-pulse{position:absolute;top:4px;right:4px;width:12px;height:12px;background:#2ecc71;border-radius:50%;border:2px solid var(--accent);animation:pulse 2.2s infinite}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.65}}
-#chat-panel{position:fixed;bottom:108px;right:32px;z-index:801;width:380px;max-height:590px;background:var(--bg-dark);border:1px solid var(--line);box-shadow:0 24px 72px rgba(0,0,0,.72);display:flex;flex-direction:column;transform:translateY(18px) scale(.97);opacity:0;pointer-events:none;transition:transform .38s var(--ease),opacity .3s}
+#chat-panel{position:fixed;bottom:140px;right:32px;z-index:801;width:380px;max-height:590px;background:var(--bg-dark);border:1px solid var(--line);box-shadow:0 24px 72px rgba(0,0,0,.72);display:flex;flex-direction:column;transform:translateY(18px) scale(.97);opacity:0;pointer-events:none;transition:transform .38s var(--ease),opacity .3s,bottom .5s var(--ease)}
+#chat-panel.bar-open{bottom:164px}
 #chat-panel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
 .chat-head{background:var(--accent);padding:16px 20px;display:flex;align-items:center;gap:12px}
 .chat-avatar{width:36px;height:36px;border-radius:50%;overflow:hidden;border:2px solid rgba(0,0,0,.2);flex-shrink:0}
@@ -261,13 +311,29 @@ a.contact-value:hover{color:var(--accent)}
 #chat-send:hover{background:var(--accent-h)}
 .chat-footer{text-align:center;padding:9px;font-size:10px;color:var(--dim);border-top:1px solid var(--line);letter-spacing:.08em}
 
-@media(max-width:1200px){:root{--pad:40px;--panel-w:400px}.spec-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr;gap:40px}}
-@media(max-width:960px){:root{--panel-w:100%}#hero{grid-template-columns:1fr;height:auto;padding-top:var(--nav-h)}.hero-panel{padding:48px var(--pad) 56px}.feat-wrap{grid-template-columns:1fr}.feat-panel{order:2;border-right:none;border-top:1px solid var(--line)}.feat-photo-wrap{order:1;min-height:55vw}.about-grid{grid-template-columns:1fr;gap:48px}.contact-grid{grid-template-columns:1fr}.prop-grid{grid-template-columns:1fr}.prop-card:first-child{grid-column:span 1}}
-@media(max-width:720px){:root{--pad:22px}.nav-links,.nav-cta{display:none}.spec-card{grid-template-columns:1fr}.spec-photo{width:100%;height:270px}.footer-grid{grid-template-columns:1fr}#chat-panel{right:10px;left:10px;width:auto}.hero-stats{grid-template-columns:1fr 1fr}}
+/* ── RESPONSIVE ─────────────────────────────── */
+@media(max-width:1200px){:root{--pad:40px;--panel-w:400px}.spec-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr;gap:40px}.test-grid{grid-template-columns:1fr}}
+@media(max-width:960px){:root{--panel-w:100%}#hero{grid-template-columns:1fr;height:auto;padding-top:var(--nav-h)}.hero-panel{padding:48px var(--pad) 56px}.feat-wrap{grid-template-columns:1fr}.feat-panel{order:2;border-right:none;border-top:1px solid var(--line)}.feat-photo-wrap{order:1;min-height:55vw}.about-grid{grid-template-columns:1fr;gap:48px}.contact-grid{grid-template-columns:1fr}.prop-grid{grid-template-columns:1fr}.prop-card:first-child{grid-column:span 1}.test-grid{grid-template-columns:1fr}}
+@media(max-width:720px){:root{--pad:22px}.nav-links,.nav-cta,.nav-phone{display:none}.spec-card{grid-template-columns:1fr}.spec-photo{width:100%;height:270px}.footer-grid{grid-template-columns:1fr}#chat-panel{right:10px;left:10px;width:auto}.hero-stats{grid-template-columns:1fr 1fr}#sticky-bar{gap:14px;flex-wrap:wrap;padding:10px 16px}.sticky-pipe{display:none}}
 </style>
 </head>
 <body>
 
+<!-- STICKY BAR -->
+<div id="sticky-bar">
+  <span class="sticky-label">Speak directly with Michael</span>
+  <div class="sticky-phone">
+    <a href="tel:+6421366366">+64 21 366 366</a>
+    <div class="sticky-pipe"></div>
+    <a href="tel:+64215209111">021 520 911</a>
+    <div class="sticky-pipe"></div>
+    <a href="tel:+6495201192">09 520 1192</a>
+  </div>
+  <a href="#contact" class="sticky-cta">Enquire Now</a>
+  <span class="sticky-close" id="sticky-close">✕</span>
+</div>
+
+<!-- NAV -->
 <nav id="nav">
   <a href="#" class="logo">Boulgaris<span class="logo-dot">.</span></a>
   <ul class="nav-links">
@@ -277,9 +343,11 @@ a.contact-value:hover{color:var(--accent)}
     <li><a href="https://instagram.com/boulgarisrealty" target="_blank">Instagram</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <a href="tel:+6421366366" class="nav-phone">+64 21 366 366</a>
   <a href="#contact" class="nav-cta">Enquire Now</a>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
   <div class="hero-photo">
     <img src="images/landingboulgaris.jpg" alt="Boulgaris Realty — Auckland Luxury Property" loading="eager"/>
@@ -289,7 +357,10 @@ a.contact-value:hover{color:var(--accent)}
     <span class="hero-eyebrow">Remuera · Parnell · Herne Bay · Eastern Suburbs</span>
     <h1 class="hero-h1">Auckland's Finest<br><em>Homes &amp; Estates</em></h1>
     <p class="hero-sub">For over three decades, Michael Boulgaris and his team have guided Auckland's most discerning buyers and sellers — with an unmatched record recognised by the REINZ Salesperson of the Millennium award.</p>
-    <div class="hero-search"><input type="text" placeholder="Suburb, address or property type…"/><button class="btn-search">Search</button></div>
+    <div class="hero-search">
+      <input type="text" placeholder="Suburb, address or property type…"/>
+      <button class="btn-search">Search</button>
+    </div>
     <div class="hero-actions">
       <a href="#featured" class="btn-primary">View Current Listings</a>
       <a href="#specialists" class="btn-outline">Request Private Appraisal</a>
@@ -303,6 +374,7 @@ a.contact-value:hover{color:var(--accent)}
   </div>
 </section>
 
+<!-- TICKER -->
 <div id="ticker"><div class="tick-track">
   <div class="tick-item"><span class="tick-dot"></span>SOLD — Remuera $5,400,000</div>
   <div class="tick-item"><span class="tick-dot"></span>SOLD — Parnell $4,800,000</div>
@@ -322,13 +394,14 @@ a.contact-value:hover{color:var(--accent)}
   <div class="tick-item"><span class="tick-dot"></span>SOLD — Mission Bay $4,400,000</div>
 </div></div>
 
+<!-- FEATURED -->
 <section id="featured">
   <div class="feat-wrap">
     <div class="feat-panel">
       <p class="feat-eyebrow">Featured Residence · Remuera, Auckland</p>
       <h2 class="feat-title">Safe Haven in<br><em>Auckland's Finest Sector</em></h2>
       <p class="feat-addr">5 Pere Street · Remuera · Auckland City</p>
-      <p class="feat-desc">The iconic 'White House' sits proudly on the crest of Mt Hobson — north facing with wrap-around verandas, bathing in all-day sun and sweeping city vistas from east to west as far as the Waitakeres. Completed in 1907, lovingly owned for over 45 years and recognised with the 2025 Master Painters Gold Award. An irreplaceable piece of Auckland's architectural heritage on 1,780sqm freehold.</p>
+      <p class="feat-desc">The iconic 'White House' sits proudly on the crest of Mt Hobson — north facing with wrap-around verandas, bathing in all-day sun and sweeping city vistas from east to west as far as the Waitakeres. Completed in 1907, lovingly owned for over 45 years and recognised with the 2025 Master Painters Gold Award.</p>
       <div class="feat-specs">
         <div class="fspec"><label>Bedrooms</label><p>4 <small>generous</small></p></div>
         <div class="fspec"><label>Bathrooms</label><p>3 <small>total</small></p></div>
@@ -364,6 +437,7 @@ a.contact-value:hover{color:var(--accent)}
   </div>
 </section>
 
+<!-- PROPERTIES -->
 <section id="properties">
   <div class="wrap">
     <div class="sec-head rv">
@@ -387,12 +461,13 @@ a.contact-value:hover{color:var(--accent)}
   </div>
 </section>
 
+<!-- SPECIALISTS — michaelboulgaris.jpg / MichaelGreer.jpg / kristos.jpg / pankaj.jpg -->
 <section id="specialists">
   <div class="wrap">
     <div class="sec-head rv"><div><span class="sec-label">Our Specialists</span><h2 class="sec-title">The People Behind<br><em>Auckland's Finest Sales</em></h2></div></div>
     <div class="spec-grid">
       <div class="spec-card rv">
-        <img src="images/michaelboulgaris.jpg" alt="Michael Boulgaris" class="spec-photo" onerror="this.src='images/michaelboulgaris.jpg'"/>
+        <img src="images/michaelboulgaris.jpg" alt="Michael Boulgaris" class="spec-photo" onerror="this.src='images/Michael.jpg'"/>
         <div class="spec-body"><div><span class="spec-badge">Principal Officer &amp; Sales Broker</span><p class="spec-name">Michael Boulgaris</p><p class="spec-role">Founder &amp; Principal · Boulgaris Realty</p><div class="legend-badge">REINZ Salesperson of the Millennium</div><div class="spec-areas"><span class="spec-area">Remuera</span><span class="spec-area">Parnell</span><span class="spec-area">Herne Bay</span><span class="spec-area">Eastern Suburbs</span></div></div><div class="spec-actions"><a href="tel:+6421366366" class="spec-btn primary">✆ +64 21 366 366</a><a href="https://wa.me/6421366366" class="spec-btn">WhatsApp</a><a href="mailto:michael@boulgaris.com" class="spec-btn">Email</a></div></div>
       </div>
       <div class="spec-card rv d1">
@@ -404,13 +479,46 @@ a.contact-value:hover{color:var(--accent)}
         <div class="spec-body"><div><span class="spec-badge">Sales Broker</span><p class="spec-name">Kristos Tsitsiridakis</p><p class="spec-role">Residential Sales · Boulgaris Realty</p><div class="spec-areas"><span class="spec-area">Parnell</span><span class="spec-area">Remuera</span><span class="spec-area">CBD Fringe</span></div></div><div class="spec-actions"><a href="tel:+6421179749" class="spec-btn primary">✆ 021 179 74 95</a><a href="https://wa.me/6421179749" class="spec-btn">WhatsApp</a><a href="mailto:kristos@boulgaris.com" class="spec-btn">Email</a></div></div>
       </div>
       <div class="spec-card rv d2">
-        <img src="images/pankaj.jpg" alt="Pankaj Kumar" class="spec-photo" onerror="this.style.background='var(--bg-mid)';this.removeAttribute('src')"/>
+        <img src="images/pankaj.jpg" alt="Pankaj Kumar" class="spec-photo" onerror="this.src='images/pankaj.jpeg'"/>
         <div class="spec-body"><div><span class="spec-badge">Personal Assistant</span><p class="spec-name">Pankaj Kumar</p><p class="spec-role">Personal Assistant to Michael Boulgaris</p><div class="spec-areas"><span class="spec-area">Client Relations</span><span class="spec-area">Operations</span></div></div><div class="spec-actions"><a href="tel:+6427327066" class="spec-btn primary">✆ (027) 32 70 667</a><a href="https://wa.me/6427327066" class="spec-btn">WhatsApp</a><a href="mailto:info@boulgarisrealty.com" class="spec-btn">Email</a></div></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="test-intro rv">
+      <span class="sec-label">Client Stories</span>
+      <h2 class="sec-title">Trusted by<br><em>Auckland's Finest Families</em></h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card rv">
+        <div class="test-stars"><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span></div>
+        <p class="test-body">"Michael achieved <em>$400,000 above</em> our reserve. His understanding of the Remuera market is unparalleled — we wouldn't trust anyone else with our home."</p>
+        <div class="test-author"><div class="test-avatar">R</div><div><p class="test-name">Richard &amp; Catherine W.</p><p class="test-sub">Remuera · Sold 2024</p></div></div>
+      </div>
+      <div class="test-card rv d1">
+        <div class="test-stars"><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span></div>
+        <p class="test-body">"From first call to settlement, the Boulgaris team was exceptional. The marketing, the presentation, the negotiation — <em>every detail was perfect.</em>"</p>
+        <div class="test-author"><div class="test-avatar">J</div><div><p class="test-name">James &amp; Sarah T.</p><p class="test-sub">Parnell · Sold 2025</p></div></div>
+      </div>
+      <div class="test-card rv d2">
+        <div class="test-stars"><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span></div>
+        <p class="test-body">"There's a reason Michael has held the REINZ top award for decades. He sold our Herne Bay home in <em>nine days</em> — at a price we didn't dare to hope for."</p>
+        <div class="test-author"><div class="test-avatar">A</div><div><p class="test-name">Alexander M.</p><p class="test-sub">Herne Bay · Sold 2025</p></div></div>
+      </div>
+    </div>
+    <div class="test-nav rv">
+      <div class="test-dot active"></div>
+      <div class="test-dot"></div>
+      <div class="test-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
 <section id="about">
   <div class="wrap">
     <div class="about-grid">
@@ -432,8 +540,10 @@ a.contact-value:hover{color:var(--accent)}
   </div>
 </section>
 
+<!-- QUOTE BREAK -->
 <div id="quote-break"><div class="qb-bg"></div><div class="qb-overlay"><p class="qb-text rv">"There is only one legend in New Zealand luxury residential real estate — <em>Michael Boulgaris.</em>"</p></div></div>
 
+<!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
     <div class="contact-grid">
@@ -462,6 +572,7 @@ a.contact-value:hover{color:var(--accent)}
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer id="footer">
   <div class="wrap">
     <div class="footer-grid">
@@ -485,9 +596,10 @@ a.contact-value:hover{color:var(--accent)}
   </div>
 </footer>
 
+<!-- CHAT -->
 <button id="chat-btn" title="Boulgaris Concierge"><div class="chat-pulse"></div><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg></button>
 <div id="chat-panel">
-  <div class="chat-head"><div class="chat-avatar"><img src="images/michaelboulgaris.jpg" alt="Michael Boulgaris" onerror="this.src='images/michaelboulgaris.jpg'"/></div><div><p class="chat-name">Boulgaris Concierge</p><p class="chat-status"><span class="status-dot"></span>Available now</p></div><span class="chat-close" id="chat-close">✕</span></div>
+  <div class="chat-head"><div class="chat-avatar"><img src="images/michaelboulgaris.jpg" alt="Michael Boulgaris" onerror="this.src='images/Michael.jpg'"/></div><div><p class="chat-name">Boulgaris Concierge</p><p class="chat-status"><span class="status-dot"></span>Available now</p></div><span class="chat-close" id="chat-close">✕</span></div>
   <div class="chat-messages" id="chat-messages"><div class="msg agent"><div class="msg-bubble">Good afternoon. Welcome to Boulgaris Realty — Auckland's specialists in exceptional residential property. How may I assist you today?</div><div class="msg-time">Just now</div></div></div>
   <div class="chat-quickreplies" id="chat-quickreplies"><button data-msg="Properties for sale">Properties for sale</button><button data-msg="Request an appraisal">Request appraisal</button><button data-msg="Book a private viewing at 5 Pere Street">5 Pere Street viewing</button><button data-msg="Speak to Michael Boulgaris">Speak to Michael</button></div>
   <div class="chat-input-row"><input type="text" id="chat-input" placeholder="Type your message…" autocomplete="off"/><button id="chat-send">➤</button></div>
@@ -495,11 +607,48 @@ a.contact-value:hover{color:var(--accent)}
 </div>
 
 <script>
+// Nav scroll
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+
+// Sticky bar — appears after scrolling past hero, dismissable
+const stickyBar=document.getElementById('sticky-bar');
+const stickyClose=document.getElementById('sticky-close');
+let stickyDismissed=false;
+window.addEventListener('scroll',()=>{
+  if(stickyDismissed)return;
+  if(window.scrollY>window.innerHeight*0.6){
+    stickyBar.classList.add('visible');
+    document.getElementById('chat-btn').classList.add('bar-open');
+    document.getElementById('chat-panel').classList.add('bar-open');
+  }else{
+    stickyBar.classList.remove('visible');
+    document.getElementById('chat-btn').classList.remove('bar-open');
+    document.getElementById('chat-panel').classList.remove('bar-open');
+  }
+},{passive:true});
+stickyClose.addEventListener('click',()=>{
+  stickyDismissed=true;
+  stickyBar.classList.remove('visible');
+  document.getElementById('chat-btn').classList.remove('bar-open');
+  document.getElementById('chat-panel').classList.remove('bar-open');
+});
+
+// Scroll reveal
 const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');ro.unobserve(e.target);}});},{threshold:0.08});
 document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
-document.querySelectorAll('.pfilter').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.pfilter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.filter;document.querySelectorAll('.prop-card').forEach(c=>{c.style.display=(f==='all'||c.dataset.suburb===f)?'':'none';});});});
+
+// Property filters
+document.querySelectorAll('.pfilter').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.pfilter').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.filter;
+    document.querySelectorAll('.prop-card').forEach(c=>{c.style.display=(f==='all'||c.dataset.suburb===f)?'':'none';});
+  });
+});
+
+// Chat
 const chatBtn=document.getElementById('chat-btn'),chatPanel=document.getElementById('chat-panel'),chatMsgs=document.getElementById('chat-messages'),chatInput=document.getElementById('chat-input'),chatQR=document.getElementById('chat-quickreplies');
 let chatHistory=[];
 chatBtn.addEventListener('click',()=>chatPanel.classList.toggle('open'));
